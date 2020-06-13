@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.dashboard.DashboardFragment">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/sign_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingEnd="8dp"
+        android:paddingBottom="8dp"
+        android:paddingStart="8dp"
+        android:background="@color/colorPrimary"
+        app:layoutManager="LinearLayoutManager"
+        tools:itemCount="8"
+        tools:listitem="@layout/item_sign"
+        />
+</LinearLayout>

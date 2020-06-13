@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">DeSign</string>
+    <string name="user_name">User Name</string>
+    <string name="password">Password</string>
+    <string name="submit">Submit</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="new_marker_title">Add Signs</string>
+    <string name="new_marker_message">Set number of signs at this location.</string>
+    <string name="new_marker_prompt">How many signs here?</string>
+    <string name="marker_info_title">Delete Sign</string>
+    <string name="marker_info_message">Delete %s sign(s) at %s?</string>
+    <string name="delete">Delete</string>
+    <string name="sign_number">%s sign(s)</string>
+</resources>
