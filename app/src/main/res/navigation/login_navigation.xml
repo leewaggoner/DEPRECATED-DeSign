@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/login_navigation"
+    app:startDestination="@id/signInFragment">
+
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.wreckingball.design.ui.auth.SignInFragment"
+        android:label="SignInFragment" >
+        <action
+            android:id="@+id/action_signInFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_signInFragment_to_confirmPasswordFragment"
+            app:destination="@id/confirmPasswordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.wreckingball.design.ui.auth.SignUpFragment"
+        android:label="SignUpFragment" >
+        <action
+            android:id="@+id/action_signUpFragment_to_confirmSignupFragment"
+            app:destination="@id/confirmSignupFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/confirmSignupFragment"
+        android:name="com.wreckingball.design.ui.auth.ConfirmSignupFragment"
+        android:label="ConfirmSignupFragment" >
+        <action
+            android:id="@+id/action_confirmSignupFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/confirmPasswordFragment"
+        android:name="com.wreckingball.design.ui.auth.ConfirmPasswordFragment"
+        android:label="ConfirmPasswordFragment" >
+        <action
+            android:id="@+id/action_confirmPasswordFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
+</navigation>

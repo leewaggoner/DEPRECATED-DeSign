@@ -3,26 +3,23 @@ package com.wreckingball.design
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.wreckingball.design.auth.Authentication
-import kotlinx.android.synthetic.main.activity_login.*
+import com.wreckingball.design.utils.PreferencesWrapper
 import org.koin.android.ext.android.inject
 
+private const val TAG = "LoginActivity"
+private const val REGISTERED_KEY = "isRegistered"
+
 class LoginActivity : AppCompatActivity() {
-    private val authentication: Authentication by inject()
+    val preferencesWrapper: PreferencesWrapper by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+    }
 
-        authenticate.setOnClickListener {
-            if (userName.text.isNotEmpty() && password.text.isNotEmpty()) {
-                authentication.authenticateUser(userName.text.toString(), password.text.toString())
-                if(authentication.loggedIn) {
-                    val intent = Intent(applicationContext, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                }
-            }
-        }
+    fun userSignedIn() {
+        val intent = Intent(applicationContext, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

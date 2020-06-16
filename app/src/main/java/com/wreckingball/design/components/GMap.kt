@@ -1,4 +1,4 @@
-package com.wreckingball.design.models
+package com.wreckingball.design.components
 
 import android.Manifest
 import android.content.Context
@@ -12,6 +12,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.gson.Gson
 import com.wreckingball.design.callbacks.MapsCallback
+import com.wreckingball.design.models.Sign
 import com.wreckingball.design.repositories.SignRepository
 import com.wreckingball.design.utils.PreferencesWrapper
 import org.koin.core.KoinComponent
@@ -82,7 +83,13 @@ class GMap(private val signRepository: SignRepository) : KoinComponent {
         newMarker?.let {marker ->
             val id = UUID.randomUUID().toString()
             marker.tag = id
-            val sign = Sign(marker, id, title, latLng, numMarkers)
+            val sign = Sign(
+                marker,
+                id,
+                title,
+                latLng,
+                numMarkers
+            )
             signRepository.addNewSign(sign)
         }
     }

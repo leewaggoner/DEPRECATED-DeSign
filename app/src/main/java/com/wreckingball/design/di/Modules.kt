@@ -13,7 +13,7 @@ import org.koin.dsl.module
 
 val appModule = module(override = true) {
     viewModel { HomeViewModel(get()) }
-    single { Authentication(get()) }
+    factory { Authentication(get()) }
     single { PreferencesWrapper(getSharedPrefs(androidContext())) }
     single { SignRepository() }
 }

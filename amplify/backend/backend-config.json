@@ -1,0 +1,10 @@
+{
+	"auth": {
+		"design11276a85": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"customAuth": false
+		}
+	}
+}
