@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        authentication.loggedOut.observe(this, Observer {loggedOut->
+        authentication.signedOut.observe(this, Observer { loggedOut->
             if (loggedOut){
                 val intent = Intent(applicationContext, LoginActivity::class.java)
                 startActivity(intent)
@@ -52,6 +52,13 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.action_logout -> {
                 authentication.signOut()
+                true
+            }
+            R.id.action_reset_password -> {
+                val intent = Intent(applicationContext, LoginActivity::class.java)
+                intent.putExtra(CHANGE_PASSWORD_KEY, true)
+                startActivity(intent)
+                finish()
                 true
             }
             else -> super.onOptionsItemSelected(item)

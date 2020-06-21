@@ -19,11 +19,13 @@ class ConfirmPasswordFragment : Fragment(R.layout.fragment_confirm_password) {
         confirm_password.setOnClickListener {
             if (confirmation_code.text.toString().isNotEmpty()
                 && authentication.validPassword(password.text.toString())) {
+                progress_confirm_password.visibility = View.VISIBLE
                 authentication.confirmPassword(confirmation_code.text.toString(), password.text.toString())
             }
         }
 
-        authentication.passwordConfirmed.observe(viewLifecycleOwner, Observer {passwordConfirmed->
+        authentication.passwordConfirmed.observe(viewLifecycleOwner, Observer { passwordConfirmed->
+            progress_confirm_password.visibility = View.GONE
             if (passwordConfirmed) {
                 val action = ConfirmPasswordFragmentDirections.actionConfirmPasswordFragmentToSignInFragment()
                 requireView().findNavController().navigate(action)

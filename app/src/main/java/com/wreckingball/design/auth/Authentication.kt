@@ -2,13 +2,10 @@ package com.wreckingball.design.auth
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.amazonaws.mobile.client.AWSMobileClient
 import com.amplifyframework.auth.AuthUserAttributeKey
 import com.amplifyframework.auth.options.AuthSignUpOptions
-import com.amplifyframework.auth.result.step.AuthNextResetPasswordStep
 import com.amplifyframework.core.Amplify
 import com.wreckingball.design.utils.PreferencesWrapper
-import kotlinx.android.synthetic.main.fragment_signup.*
 
 const val USERNAME_KEY = "username"
 
@@ -18,9 +15,10 @@ class Authentication(private val preferencesWrapper: PreferencesWrapper) {
     val isLoggedIn: MutableLiveData<Boolean> = MutableLiveData()
     val registrationSent: MutableLiveData<Boolean> = MutableLiveData()
     val registrationComplete: MutableLiveData<Boolean> = MutableLiveData()
-    val loggedOut: MutableLiveData<Boolean> = MutableLiveData()
+    val signedOut: MutableLiveData<Boolean> = MutableLiveData()
     val forgotPasswordSent: MutableLiveData<Boolean> = MutableLiveData()
     val passwordConfirmed: MutableLiveData<Boolean> = MutableLiveData()
+    val resetPassword: MutableLiveData<Boolean> = MutableLiveData()
     var errorMsg = ""
     private lateinit var username: String
 
@@ -126,12 +124,12 @@ class Authentication(private val preferencesWrapper: PreferencesWrapper) {
         Amplify.Auth.signOut(
             {
                 Log.i(TAG, "Signed out successfully")
-                loggedOut.postValue(true)
+                signedOut.postValue(true)
             },
             { error ->
                 Log.e(TAG, error.toString())
                 errorMsg = error.toString()
-                loggedOut.postValue(false)
+                signedOut.postValue(false)
             }
         )
     }
@@ -168,6 +166,22 @@ class Authentication(private val preferencesWrapper: PreferencesWrapper) {
                 Log.e(TAG, error.toString())
                 errorMsg = error.toString()
                 passwordConfirmed.postValue(false)
+            }
+        )
+    }
+
+    fun resetPassword(existingPassword: String, newPassword: String) {
+        Amplify.Auth.updatePassword(
+            existingPassword,
+            newPassword,
+            {
+                Log.i(TAG, "Updated password successfully")
+                resetPassword.postValue(true)
+            },
+            {
+                error -> Log.e("AuthQuickstart", error.toString())
+                errorMsg = error.toString()
+                resetPassword.postValue(false)
             }
         )
     }

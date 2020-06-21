@@ -1,25 +1,20 @@
 package com.wreckingball.design.ui.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
-import com.wreckingball.design.LoginActivity
 import com.wreckingball.design.R
-import com.wreckingball.design.auth.Authentication
 import com.wreckingball.design.callbacks.MapsCallback
 import com.wreckingball.design.models.Sign
 import kotlinx.android.synthetic.main.dialog_add_marker.view.*
 import kotlinx.android.synthetic.main.dialog_marker_info.view.*
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback {

@@ -6,6 +6,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -14,6 +15,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="@string/password_text"
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/username"
@@ -28,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:hint="@string/password"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword" />
 
         <Button
             android:id="@+id/authenticate"
@@ -48,9 +57,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:fontFamily="@font/aqua"
-                android:textSize="16sp"
-                android:textColor="@color/colorPrimaryDark"
                 android:text="@string/register_user"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp"
                 tools:text="Sign Up" />
 
             <TextView
@@ -59,13 +68,24 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:fontFamily="@font/aqua"
-                android:textSize="16sp"
-                android:textColor="@color/colorPrimaryDark"
                 android:text="@string/forgot_password"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp"
                 tools:text="Forgot Password" />
 
         </LinearLayout>
 
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_signin"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

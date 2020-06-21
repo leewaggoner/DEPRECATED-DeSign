@@ -2,8 +2,7 @@
 <navigation
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/login_navigation"
-    app:startDestination="@id/signInFragment">
+    android:id="@+id/login_navigation">
 
     <fragment
         android:id="@+id/signInFragment"
@@ -40,4 +39,8 @@
             android:id="@+id/action_confirmPasswordFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.wreckingball.design.ui.auth.ChangePasswordFragment"
+        android:label="ChangePasswordFragment" />
 </navigation>

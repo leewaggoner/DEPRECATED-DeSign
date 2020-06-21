@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">DeSign</string>
+    <string name="signup_text">Your user name must be alpha-numeric and your password must be at least 8 characters and contain at least 1 lower and 1 upper case letter, one number, and one special character.</string>
+    <string name="password_text">Your password is at least 8 characters and contains at least 1 lower and 1 upper case letter, one number, and one special character.</string>
     <string name="user_name">User Name</string>
     <string name="password">Password</string>
     <string name="email">Email</string>
@@ -8,6 +10,11 @@
     <string name="forgot_password">Forgot Password</string>
     <string name="confirm_password">Check for a confirmation email and enter the code and your new password.</string>
     <string name="logout">Log Out</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="register_user">Sign Up</string>
+    <string name="change_password">Enter your current password then your new password and press Submit.</string>
+    <string name="existing_password">Existing Password</string>
+    <string name="new_password">New Password</string>
     <string name="submit">Submit</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
@@ -19,5 +26,4 @@
     <string name="marker_info_message">Delete %s sign(s) at %s?</string>
     <string name="delete">Delete</string>
     <string name="sign_number">%s sign(s)</string>
-    <string name="register_user">Sign Up</string>
 </resources>

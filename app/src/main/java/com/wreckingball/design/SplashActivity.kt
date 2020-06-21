@@ -4,15 +4,12 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.wreckingball.design.auth.Authentication
 import org.koin.android.ext.android.inject
-import java.util.*
-import kotlin.math.cos
 
 
 class SplashActivity : AppCompatActivity() {
