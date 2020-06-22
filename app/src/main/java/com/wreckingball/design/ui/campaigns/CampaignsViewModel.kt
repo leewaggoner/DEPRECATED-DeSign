@@ -1,10 +1,10 @@
-package com.wreckingball.design.ui.notifications
+package com.wreckingball.design.ui.campaigns
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class NotificationsViewModel : ViewModel() {
+class CampaignsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is notifications Fragment"

@@ -7,8 +7,8 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.wreckingball.design.ui.home.HomeFragment"
-        android:label="@string/title_home"
+        android:name="com.wreckingball.design.ui.map.MapFragment"
+        android:label="@string/title_map"
         tools:layout="@layout/fragment_home" />
 
     <fragment
@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.wreckingball.design.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:name="com.wreckingball.design.ui.campaigns.CampaignsFragment"
+        android:label="@string/title_campaigns"
+        tools:layout="@layout/fragment_campaigns" />
 </navigation>

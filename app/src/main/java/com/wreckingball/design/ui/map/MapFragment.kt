@@ -1,4 +1,4 @@
-package com.wreckingball.design.ui.home
+package com.wreckingball.design.ui.map
 
 import android.os.Bundle
 import android.view.View
@@ -17,8 +17,8 @@ import kotlinx.android.synthetic.main.dialog_add_marker.view.*
 import kotlinx.android.synthetic.main.dialog_marker_info.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback {
-    private val model: HomeViewModel by viewModel()
+class MapFragment : Fragment(R.layout.fragment_home), OnMapReadyCallback {
+    private val model: MapViewModel by viewModel()
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

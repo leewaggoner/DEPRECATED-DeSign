@@ -40,7 +40,7 @@
             android:inputType="textPassword" />
 
         <Button
-            android:id="@+id/authenticate"
+            android:id="@+id/signin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"

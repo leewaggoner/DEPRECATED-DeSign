@@ -78,7 +78,7 @@ class GMap(private val signRepository: SignRepository) : KoinComponent {
     }
 
     fun addMarker(latLng: LatLng, numMarkers: Int) {
-        val title = "Sign Location ${signRepository.signMap.size + 1}"
+        val title = "Sign Location ${signRepository.getNumSigns() + 1}"
         val newMarker = map?.addMarker(MarkerOptions().position(latLng).title(title))
         newMarker?.let {marker ->
             val id = UUID.randomUUID().toString()

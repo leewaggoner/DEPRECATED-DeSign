@@ -1,9 +1,9 @@
-package com.wreckingball.design.ui.home
+package com.wreckingball.design.ui.map
 
 import androidx.lifecycle.ViewModel
 import com.wreckingball.design.components.GMap
 import com.wreckingball.design.repositories.SignRepository
 
-class HomeViewModel(private val signRepository: SignRepository) : ViewModel() {
+class MapViewModel(private val signRepository: SignRepository) : ViewModel() {
     val map = GMap(signRepository)
 }
