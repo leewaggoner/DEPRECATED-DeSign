@@ -11,7 +11,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.wreckingball.design.auth.Authentication
+import com.wreckingball.design.components.Authentication
 import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {

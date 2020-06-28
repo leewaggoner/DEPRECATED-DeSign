@@ -1,7 +1,7 @@
 package com.wreckingball.design.ui.auth
 
 import androidx.lifecycle.ViewModel
-import com.wreckingball.design.auth.Authentication
+import com.wreckingball.design.components.Authentication
 
 class LoginViewModel(private val authentication: Authentication) : ViewModel() {
     val resetPassword = authentication.resetPassword

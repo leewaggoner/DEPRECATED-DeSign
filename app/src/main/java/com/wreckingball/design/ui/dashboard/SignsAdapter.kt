@@ -27,7 +27,5 @@ class SignsAdapter(private val list: List<Sign>) : RecyclerView.Adapter<SignsAda
         return ViewHolder(formatsBinding, formatsBinding.root)
     }
 
-    override fun getItemCount(): Int {
-        return list.size
-    }
+    override fun getItemCount(): Int =list.size
 }

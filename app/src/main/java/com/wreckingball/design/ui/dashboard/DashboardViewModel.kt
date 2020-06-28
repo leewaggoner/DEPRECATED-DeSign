@@ -7,4 +7,11 @@ import com.wreckingball.design.repositories.SignRepository
 
 class DashboardViewModel(private val signRepository: SignRepository) : ViewModel() {
     val signs: MutableLiveData<List<Sign>> = signRepository.signs
+
+    fun handleSwipeLeft(position: Int) {
+        signs.value?.let {signList ->
+            val sign = signList[position]
+            signRepository.deleteSign(sign.id)
+        }
+    }
 }

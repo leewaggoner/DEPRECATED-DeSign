@@ -21,6 +21,7 @@ class ConfirmPasswordFragment : Fragment(R.layout.fragment_confirm_password) {
             }
         }
 
+        //TODO: Handle errors
         model.passwordConfirmed.observe(viewLifecycleOwner, Observer { passwordConfirmed->
             progress_confirm_password.visibility = View.GONE
             if (passwordConfirmed) {

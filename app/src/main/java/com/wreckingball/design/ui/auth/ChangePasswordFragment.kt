@@ -22,6 +22,7 @@ class ChangePasswordFragment : Fragment(R.layout.fragment_change_password) {
             }
         }
 
+        //TODO: Handle errors
         model.resetPassword.observe(viewLifecycleOwner, Observer { reset_password ->
             progress_change_password.visibility = View.GONE
             if (reset_password) {

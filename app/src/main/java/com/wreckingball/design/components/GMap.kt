@@ -36,8 +36,8 @@ class GMap(private val signRepository: SignRepository) : KoinComponent {
         //get saved camera position
         val camPositionJson = preferencesWrapper.getString("cameraPosition", "")
         var camPosition: CameraPosition? = null
-        camPositionJson?.let {json ->
-            camPosition = Gson().fromJson(json, CameraPosition::class.java)
+        if (camPositionJson.isNotEmpty()) {
+            camPosition = Gson().fromJson(camPositionJson, CameraPosition::class.java)
         }
 
         if (camPosition != null) {

@@ -20,6 +20,7 @@ class SignUpFragment : Fragment(R.layout.fragment_signup) {
             }
         }
 
+        //TODO: Handle errors
         model.registrationSent.observe(viewLifecycleOwner, Observer {registrationSent ->
             progress_signup.visibility = View.GONE
             if (registrationSent) {

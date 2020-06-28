@@ -3,7 +3,7 @@ package com.wreckingball.design.di
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
-import com.wreckingball.design.auth.Authentication
+import com.wreckingball.design.components.Authentication
 import com.wreckingball.design.repositories.SignRepository
 import com.wreckingball.design.ui.auth.LoginViewModel
 import com.wreckingball.design.ui.dashboard.DashboardViewModel

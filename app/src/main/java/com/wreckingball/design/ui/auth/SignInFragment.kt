@@ -33,6 +33,7 @@ class SignInFragment : Fragment(R.layout.fragment_signin) {
             model.handleForgotPasswordClick()
         }
 
+        //TODO: Handle errors
         model.isLoggedIn.observe(viewLifecycleOwner, Observer {isLoggedIn ->
             progress_signin.visibility = View.GONE
             if (isLoggedIn) {
@@ -41,6 +42,7 @@ class SignInFragment : Fragment(R.layout.fragment_signin) {
             }
         })
 
+        //TODO: Handle errors
         model.forgotPasswordSent.observe(viewLifecycleOwner, Observer {forgotSent->
             progress_signin.visibility = View.GONE
             if (forgotSent) {

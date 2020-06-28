@@ -20,6 +20,7 @@ class ConfirmSignupFragment : Fragment(R.layout.fragment_confirm_signup) {
             }
         }
 
+        //TODO: Handle errors
         model.registrationComplete.observe(viewLifecycleOwner, Observer {registrationComplete ->
             progress_confirm_signup.visibility = View.GONE
             if (registrationComplete) {

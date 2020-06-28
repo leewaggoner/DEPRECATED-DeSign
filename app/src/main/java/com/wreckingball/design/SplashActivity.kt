@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
-import com.wreckingball.design.auth.Authentication
+import com.wreckingball.design.components.Authentication
 import org.koin.android.ext.android.inject
 
 
@@ -29,7 +29,7 @@ class SplashActivity : AppCompatActivity() {
                 this,
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                 1
-            );
+            )
         } else {
             authentication.checkAuthenticationStatus()
         }
