@@ -1,6 +1,7 @@
-package com.wreckingball.design.auth
+package com.wreckingball.design.components
 
 import android.util.Log
+import android.util.Patterns
 import androidx.lifecycle.MutableLiveData
 import com.amplifyframework.auth.AuthUserAttributeKey
 import com.amplifyframework.auth.options.AuthSignUpOptions
@@ -64,23 +65,21 @@ class Authentication(private val preferencesWrapper: PreferencesWrapper) {
 
     fun validUsername(username: String): Boolean {
         val regex = """^(?=.{3,15}${'$'})[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$""".toRegex()
-        val valid = regex.matches(input = username)
-        return valid
+        return regex.matches(input = username)
     }
 
     fun validEmail(email: String): Boolean {
-        val valid = email.isNotEmpty() && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
-        return valid
+        return email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
     fun validPassword(password: String): Boolean {
         val regex = """^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#${'$'}^+=!*()@%&]).{8,}$""".toRegex()
-        val valid = regex.matches(input = password)
-        return valid
+        return regex.matches(input = password)
     }
 
     fun confirmRegistration(code: String) {
-        if (code.isNotEmpty()) {
+        val username = preferencesWrapper.getString(USERNAME_KEY, "")
+        if (username.isNotEmpty() && code.isNotEmpty()) {
             Amplify.Auth.confirmSignUp(
                 username,
                 code,
@@ -136,20 +135,18 @@ class Authentication(private val preferencesWrapper: PreferencesWrapper) {
 
     fun forgotPassword() {
         val username = preferencesWrapper.getString(USERNAME_KEY, "")
-        username?.let {name->
-            if (name.isNotEmpty()) {
-                Amplify.Auth.resetPassword(
-                    name,
-                    {
-                        forgotPasswordSent.postValue(true)
-                    },
-                    { error ->
-                        Log.e(TAG, error.toString())
-                        errorMsg = error.toString()
-                        forgotPasswordSent.postValue(false)
-                    }
-                )
-            }
+        if (username.isNotEmpty()) {
+            Amplify.Auth.resetPassword(
+                username,
+                {
+                    forgotPasswordSent.postValue(true)
+                },
+                { error ->
+                    Log.e(TAG, error.toString())
+                    errorMsg = error.toString()
+                    forgotPasswordSent.postValue(false)
+                }
+            )
         }
     }
 
