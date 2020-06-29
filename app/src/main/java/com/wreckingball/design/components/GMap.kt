@@ -13,13 +13,14 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.gson.Gson
 import com.wreckingball.design.callbacks.MapsCallback
 import com.wreckingball.design.models.Sign
+import com.wreckingball.design.repositories.CampaignRepository
 import com.wreckingball.design.repositories.SignRepository
 import com.wreckingball.design.utils.PreferencesWrapper
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import java.util.*
 
-class GMap(private val signRepository: SignRepository) : KoinComponent {
+class GMap(private val campaignRepository: CampaignRepository, private val signRepository: SignRepository) : KoinComponent {
     private val preferencesWrapper: PreferencesWrapper by inject()
     private var map: GoogleMap? = null
     lateinit var mapsCallback: MapsCallback
@@ -81,17 +82,27 @@ class GMap(private val signRepository: SignRepository) : KoinComponent {
         val title = "Sign Location ${signRepository.getNumSigns() + 1}"
         val newMarker = map?.addMarker(MarkerOptions().position(latLng).title(title))
         newMarker?.let {marker ->
-            val id = UUID.randomUUID().toString()
-            marker.tag = id
-            val sign = Sign(
-                marker,
-                id,
-                title,
-                latLng,
-                numMarkers
-            )
-            signRepository.addNewSign(sign)
+            val campaignId = campaignRepository.getCurrentCampaign()?.id
+            if (campaignId != null) {
+                val id = UUID.randomUUID().toString()
+                marker.tag = id
+                val sign = Sign(
+                    marker,
+                    id,
+                    title,
+                    latLng,
+                    numMarkers,
+                    campaignId
+                )
+                signRepository.addNewSign(sign)
+            } else {
+                //TODO: Add error handling
+            }
         }
+    }
+
+    fun clearMarkers() {
+        map?.clear()
     }
 
     fun removeMarker(sign: Sign) {
@@ -100,13 +111,13 @@ class GMap(private val signRepository: SignRepository) : KoinComponent {
     }
 
     private fun restoreMarkers() {
-        if (map != null) {
-            signRepository.signMap.forEach {(_, sign) ->
-                val newMarker = map?.addMarker(MarkerOptions().position(sign.latLng).title(sign.title))
-                newMarker?.let {marker ->
-                    marker.tag = sign.id
-                    sign.marker = marker
-                }
+        clearMarkers()
+        val signs = signRepository.campaignSigns.value
+        signs?.forEach { sign ->
+            val newMarker = map?.addMarker(MarkerOptions().position(sign.latLng).title(sign.title))
+            newMarker?.let {marker ->
+                marker.tag = sign.id
+                sign.marker = marker
             }
         }
     }

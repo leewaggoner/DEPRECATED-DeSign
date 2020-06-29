@@ -2,18 +2,21 @@ package com.wreckingball.design.repositories
 
 import androidx.lifecycle.MutableLiveData
 import com.wreckingball.design.models.Sign
+import com.wreckingball.design.utils.PreferencesWrapper
 
-class SignRepository {
-    var signs = MutableLiveData<List<Sign>>()
-    var signMap = mutableMapOf<String, Sign>()
+class SignRepository(preferencesWrapper: PreferencesWrapper) {
+    val campaignSigns = MutableLiveData<List<Sign>>()
+    private var currentCampaign = preferencesWrapper.getString(CURRENT_CAMPAIGN_KEY, "")
+    private var signMap = mutableMapOf<String, Sign>()
 
-    init {
-        signs.value = ArrayList(signMap.values)
+    fun setNewCampaign(campaignId: String) {
+        currentCampaign = campaignId
+        updateCampaignSigns()
     }
 
     fun addNewSign(sign: Sign) {
         signMap[sign.id] = sign
-        signs.value = ArrayList(signMap.values)
+        updateCampaignSigns()
     }
 
     fun getSign(id: String) : Sign? {
@@ -22,10 +25,20 @@ class SignRepository {
 
     fun deleteSign(id: String) {
         signMap.remove(id)
-        signs.value = ArrayList(signMap.values)
+        updateCampaignSigns()
     }
 
     fun getNumSigns() : Int {
-        return signMap.size
+        return campaignSigns.value?.size ?: 0
+    }
+
+    private fun updateCampaignSigns() {
+        val list = mutableListOf<Sign>()
+        signMap.forEach {(_, sign) ->
+            if (sign.campaignId == currentCampaign) {
+                list.add(sign.copy())
+            }
+        }
+        campaignSigns.value = list
     }
 }

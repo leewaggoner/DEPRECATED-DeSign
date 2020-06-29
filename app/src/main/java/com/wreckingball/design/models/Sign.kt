@@ -8,5 +8,6 @@ data class Sign (
     var id: String,
     val title: String,
     val latLng: LatLng,
-    val number: Int = 1
+    val number: Int = 1,
+    val campaignId: String
 )

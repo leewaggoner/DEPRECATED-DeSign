@@ -27,4 +27,5 @@
     <string name="delete">Delete</string>
     <string name="sign_number">%s sign(s)</string>
     <string name="add_signs">Add Some Signs!</string>
+    <string name="no_campaigns">There are no campaigns!</string>
 </resources>
