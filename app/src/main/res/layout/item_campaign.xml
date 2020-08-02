@@ -6,7 +6,7 @@
     <data>
         <variable
             name="campaign"
-            type="com.wreckingball.design.models.Campaign" />
+            type="com.amplifyframework.datastore.generated.model.Campaign" />
     </data>
     <LinearLayout
         android:layout_width="match_parent"

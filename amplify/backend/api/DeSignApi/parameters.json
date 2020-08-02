@@ -1,0 +1,11 @@
+{
+    "AppSyncApiName": "DeSignApi",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": "false",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authdesign11276a85",
+            "Outputs.UserPoolId"
+        ]
+    }
+}

@@ -5,10 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.amplifyframework.datastore.generated.model.Campaign
 import com.wreckingball.design.R
 import com.wreckingball.design.callbacks.CampaignCallback
 import com.wreckingball.design.databinding.ItemCampaignBinding
-import com.wreckingball.design.models.Campaign
 import kotlinx.android.synthetic.main.item_campaign.view.*
 
 class CampaignAdapter(private val list: List<Campaign>,

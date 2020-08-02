@@ -1,21 +1,17 @@
 package com.wreckingball.design.ui.campaigns
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.wreckingball.design.repositories.CampaignRepository
-import com.wreckingball.design.repositories.SignRepository
+import com.wreckingball.design.components.CampaignSigns
 
-class CampaignsViewModel(private val campaignRepository: CampaignRepository,
-                         private val signRepository: SignRepository) : ViewModel() {
-    val campaigns = campaignRepository.campaigns
+class CampaignsViewModel(private val campaignSigns: CampaignSigns) : ViewModel() {
+    val campaigns = campaignSigns.campaignRepository.campaigns
 
     fun getSelectedCampaign() : Int {
-        return campaignRepository.getCurrentCampaignPosition()
+        return campaignSigns.campaignRepository.getCurrentCampaignPosition()
     }
 
     fun changeCampaign(position: Int) {
-        campaignRepository.setNewCampaign(position)
-        signRepository.setNewCampaign(campaignRepository.getCurrentCampaign()?.id ?: "")
+        campaignSigns.campaignRepository.setNewCampaign(position)
+        campaignSigns.signRepository.setNewCampaign(campaignSigns.campaignRepository.getCurrentCampaign()?.id ?: "")
     }
 }

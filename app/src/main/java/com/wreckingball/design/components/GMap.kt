@@ -13,17 +13,17 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.gson.Gson
 import com.wreckingball.design.callbacks.MapsCallback
 import com.wreckingball.design.models.Sign
-import com.wreckingball.design.repositories.CampaignRepository
-import com.wreckingball.design.repositories.SignRepository
 import com.wreckingball.design.utils.PreferencesWrapper
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import java.util.*
 
-class GMap(private val campaignRepository: CampaignRepository, private val signRepository: SignRepository) : KoinComponent {
+class GMap(campaignSigns: CampaignSigns) : KoinComponent {
     private val preferencesWrapper: PreferencesWrapper by inject()
     private var map: GoogleMap? = null
     lateinit var mapsCallback: MapsCallback
+    private val campaignRepository = campaignSigns.campaignRepository
+    private val signRepository = campaignSigns.signRepository
 
     fun initializeMap(context: Context,
                       fusedLocationProviderClient: FusedLocationProviderClient,
@@ -80,24 +80,27 @@ class GMap(private val campaignRepository: CampaignRepository, private val signR
 
     fun addMarker(latLng: LatLng, numMarkers: Int) {
         val title = "Sign Location ${signRepository.getNumSigns() + 1}"
-        val newMarker = map?.addMarker(MarkerOptions().position(latLng).title(title))
-        newMarker?.let {marker ->
-            val campaignId = campaignRepository.getCurrentCampaign()?.id
-            if (campaignId != null) {
+        val campaign = campaignRepository.getCurrentCampaign()
+        val campaignId = campaign?.id
+        if (!campaignId.isNullOrEmpty()) {
+            val newMarker = map?.addMarker(MarkerOptions().position(latLng).title(title))
+            newMarker?.let {marker ->
                 val id = UUID.randomUUID().toString()
                 marker.tag = id
                 val sign = Sign(
                     marker,
                     id,
                     title,
-                    latLng,
+                    "",
+                    latLng.latitude,
+                    latLng.longitude,
                     numMarkers,
                     campaignId
                 )
                 signRepository.addNewSign(sign)
-            } else {
-                //TODO: Add error handling
             }
+        } else {
+            //TODO: Add error handling
         }
     }
 
@@ -106,7 +109,7 @@ class GMap(private val campaignRepository: CampaignRepository, private val signR
     }
 
     fun removeMarker(sign: Sign) {
-        signRepository.deleteSign(sign.id)
+        signRepository.deleteSign(sign.markerId)
         sign.marker.remove()
     }
 
@@ -114,9 +117,9 @@ class GMap(private val campaignRepository: CampaignRepository, private val signR
         clearMarkers()
         val signs = signRepository.campaignSigns.value
         signs?.forEach { sign ->
-            val newMarker = map?.addMarker(MarkerOptions().position(sign.latLng).title(sign.title))
+            val newMarker = map?.addMarker(MarkerOptions().position(LatLng(sign.latitude, sign.longitude)).title(sign.title))
             newMarker?.let {marker ->
-                marker.tag = sign.id
+                marker.tag = sign.markerId
                 sign.marker = marker
             }
         }

@@ -12,10 +12,12 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.wreckingball.design.components.Authentication
+import com.wreckingball.design.components.CampaignSigns
 import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
     private val authentication: Authentication by inject()
+    private val campaignSigns: CampaignSigns by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +39,8 @@ class MainActivity : AppCompatActivity() {
                 finish()
             }
         })
+
+        campaignSigns.initialize()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -52,6 +56,7 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.action_logout -> {
                 authentication.signOut()
+                campaignSigns.clear()
                 true
             }
             R.id.action_reset_password -> {

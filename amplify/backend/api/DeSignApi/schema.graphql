@@ -1,0 +1,16 @@
+type Sign @model {
+  id: ID!
+  markerId: String!
+  campaignId: String!
+  title: String!
+  number: Int!
+  longitude: Float!
+  latitude: Float!
+  description: String
+}
+
+type Campaign @model {
+  id: ID!
+  name: String!
+  description: String
+}
